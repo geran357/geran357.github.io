@@ -5,7 +5,7 @@ import gfx2 from "../images/azusa gfx.png";
 import gfx3 from "../images/gfx charlotte.png";
 import amv1 from "../video/arima kana.mp4"; // Import video amv1
 import amv2 from "../video/nahida chan.mp4"; // Import video amv2
-import amv3 from "../video/what a perfect day for crying.mp4"; // Import video amv
+import amv3 from "../video/what a perfect day for crying.mp4"; // Import video amv3
 
 const LandingPage: React.FC = () => {
   const [popupContent, setPopupContent] = useState<string | null>(null);
@@ -25,12 +25,12 @@ const LandingPage: React.FC = () => {
     <div className="min-h-screen bg-gradient-to-r from-gray-100 via-gray-200 to-gray-300 font-sans relative">
       {/* Navbar */}
       <header className="flex justify-between items-center px-8 py-4 bg-blue-600 text-white shadow-lg">
-        <h1 className="text-2xl font-bold">Galeri Karya</h1>
+        <h1 className="text-2xl font-bold animate-fadeIn">Galeri Karya</h1>
       </header>
 
       {/* Banner Section */}
       <section className="px-8 md:px-16 py-4">
-        <div className="w-full rounded-lg shadow-lg overflow-hidden">
+        <div className="w-full rounded-lg shadow-lg overflow-hidden animate-fadeIn">
           <img
             src={banner}
             alt="Banner"
@@ -41,14 +41,15 @@ const LandingPage: React.FC = () => {
 
       {/* Editing Section */}
       <section className="px-8 md:px-16 py-10">
-        <h2 className="text-2xl font-bold text-purple-700 text-center mb-6">
-          gfx
+        <h2 className="text-2xl font-bold text-purple-700 text-center mb-6 animate-fadeIn">
+          GFX
         </h2>
         <div className="grid grid-cols-3 gap-4">
           {[gfx1, gfx2, gfx3].map((img, idx) => (
             <div
               key={idx}
-              className="h-55 flex items-center justify-center rounded-lg shadow-md overflow-hidden cursor-pointer"
+              className="h-55 flex items-center justify-center rounded-lg shadow-md overflow-hidden cursor-pointer opacity-0 animate-fadeIn"
+              style={{ animationDelay: `${idx * 200}ms` }}
               onClick={() => openPopup(img, false)}
             >
               <img
@@ -61,16 +62,17 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Gallery Section */}
+      {/* Video Section */}
       <section className="px-8 md:px-16 py-10">
-        <h2 className="text-2xl font-bold text-purple-700 text-center mb-6">
+        <h2 className="text-2xl font-bold text-purple-700 text-center mb-6 animate-fadeIn">
           Video
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {[amv1, amv2, amv3].map((video, idx) => (
             <div
               key={idx}
-              className="rounded-lg shadow-md overflow-hidden cursor-pointer"
+              className="rounded-lg shadow-md overflow-hidden cursor-pointer opacity-0 animate-fadeIn"
+              style={{ animationDelay: `${idx * 200}ms` }}
               onClick={() => openPopup(video, true)}
             >
               <video
@@ -84,14 +86,14 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* Pop-up */}
+      {/* Popup */}
       {popupContent && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 animate-fadeIn"
           onClick={closePopup}
         >
           <div
-            className="bg-white rounded-lg shadow-lg p-4 max-w-lg w-full"
+            className="bg-white rounded-lg shadow-lg p-4 max-w-lg w-full relative animate-scaleUp"
             onClick={(e) => e.stopPropagation()}
           >
             <button

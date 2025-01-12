@@ -1,13 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import profileimage from "../images/201560ae-0a68-43e6-8b65-fa19a90adc1a.png";
 
 const LandingPage: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), 200); // Memulai animasi setelah 200ms
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="bg-white min-h-screen flex flex-col items-center justify-center font-sans">
       <main className="flex flex-col md:flex-row items-center max-w-5xl mx-auto px-4 md:px-8">
         {/* Bagian Teks */}
-        <div className="text-center md:text-left flex-1">
+        <div
+          className={`text-center md:text-left flex-1 transition-all duration-700 ${
+            isVisible ? "animate-fadeIn" : "opacity-0"
+          }`}
+        >
           <span className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide">
             Design - Development - Editing
           </span>
@@ -35,13 +46,17 @@ const LandingPage: React.FC = () => {
         </div>
 
         {/* Bagian Gambar */}
-        <div className="flex-1 flex justify-center">
+        <div
+          className={`flex-1 flex justify-center transition-all duration-700 delay-200 ${
+            isVisible ? "animate-fadeIn" : "opacity-0"
+          }`}
+        >
           {/* Persegi dengan Gambar */}
           <div className="relative bg-gradient-to-tr from-purple-500 to-blue-500 rounded-3xl w-[300px] h-[350px] md:w-[350px] md:h-[400px] flex items-center justify-center">
             <img
               src={profileimage}
               alt="Profile"
-              className="relative z-10  w-[300px] h-[350px] md:w-[350px] md:h-[400px] object-cover rounded-md"
+              className="relative z-10 w-[300px] h-[350px] md:w-[350px] md:h-[400px] object-cover rounded-md"
             />
           </div>
         </div>
